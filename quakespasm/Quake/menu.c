@@ -1326,6 +1326,7 @@ void M_Options_Key (int k)
 				Cbuf_AddText ("bind \"YBUTTON\" \"impulse 12\"\n");
 				Cbuf_AddText ("bind \"LTRIGGER\" \"+jump\"\n");
 				Cbuf_AddText ("bind \"RTRIGGER\" \"+attack\"\n");
+				Cbuf_AddText ("crosshair 1\n");
 				Cbuf_AddText ("scr_conscale 3.5\n");
 				Cbuf_AddText ("scr_menuscale 3.5\n");
 				Cbuf_AddText ("scr_sbarscale 3.5\n");
