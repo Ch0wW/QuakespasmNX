@@ -876,17 +876,17 @@ void Key_Init (void)
 	consolekeys[K_MWHEELUP] = true;
 	consolekeys[K_MWHEELDOWN] = true;
 
+#ifdef __SWITCH__
+	for (int i = 0 ; i < 11 ; i++)
+		consolekeys[K_LTHUMB + i] = true;
+#endif
+
 //
 // initialize menubound[]
 //
 	menubound[K_ESCAPE] = true;
 	for (i = 0; i < 12; i++)
 		menubound[K_F1+i] = true;
-
-#if __SWITCH__
-	for (int i = 0 ; i < 10 ; i++)
-		consolekeys[K_LTHUMB + i] = true;
-#endif
 
 //
 // register our functions

@@ -97,6 +97,8 @@ enum m_state_e	m_return_state;
 qboolean	m_return_onerror;
 char		m_return_reason [32];
 
+extern cvar_t crosshair;
+
 #define StartingGame	(m_multiplayer_cursor == 1)
 #define JoiningGame		(m_multiplayer_cursor == 0)
 #define	IPXConfig		(m_net_cursor == 0)
@@ -1140,10 +1142,14 @@ void M_AdjustSliders (int dir)
 		break;
 
 	case OPT_ALWAYSMLOOK:
+	#ifdef __SWITCH__
+		Cvar_Set ("crosshair", crosshair.value ? "0" : "1");
+	#else
 		if (in_mlook.state & 1)
 			Cbuf_AddText("-mlook");
 		else
 			Cbuf_AddText("+mlook");
+	#endif
 		break;
 
 	case OPT_LOOKSPRING:	// lookspring
@@ -1264,8 +1270,13 @@ void M_Options_Draw (void)
 	M_DrawCheckbox (220, 32 + 8*OPT_INVMOUSE, m_pitch.value < 0);
 
 	// OPT_ALWAYSMLOOK:
-	M_Print (16, 32 + 8*OPT_ALWAYSMLOOK,	"            Mouse Look");
-	M_DrawCheckbox (220, 32 + 8*OPT_ALWAYSMLOOK, in_mlook.state & 1);
+	#ifdef __SWITCH__
+	M_Print (16, 32 + 8*OPT_ALWAYSMLOOK,	"             Crosshair");
+	M_DrawCheckbox (220, 32 + 8*OPT_ALWAYSMLOOK, crosshair.value);
+	#else
+ 	M_Print (16, 32 + 8*OPT_ALWAYSMLOOK,	"            Mouse Look");
+ 	M_DrawCheckbox (220, 32 + 8*OPT_ALWAYSMLOOK, in_mlook.state & 1);
+	#endif
 
 	// OPT_LOOKSPRING:
 	M_Print (16, 32 + 8*OPT_LOOKSPRING,	"            Lookspring");
@@ -1317,7 +1328,7 @@ void M_Options_Key (int k)
 		case OPT_DEFAULTS:
 			if (SCR_ModalMessage("This will reset all controls\n"
 		#ifdef __SWITCH__
-					"and stored cvars. Continue? (A: Yes / B: No)\n", 15.0f))
+					"and stored cvars. \n\nContinue? (A: Yes / B: No)\n", 15.0f))
 		#else
 					"and stored cvars. Continue? (y/n)\n", 15.0f))
 		#endif
