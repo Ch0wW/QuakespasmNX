@@ -1384,14 +1384,20 @@ const char *bindnames[][2] =
 	{"+speed",		"run"},
 	{"+moveleft",		"step left"},
 	{"+moveright",		"step right"},
+
+	#ifndef __SWITCH__
 	{"+strafe",		"sidestep"},
+
 	{"+lookup",		"look up"},
 	{"+lookdown",		"look down"},
 	{"centerview",		"center view"},
+
+	#ifndef __SWITCH__
 	{"+mlook",		"mouse look"},
 	{"+klook",		"keyboard look"},
 	{"+moveup",		"swim up"},
 	{"+movedown",		"swim down"}
+	#endif
 };
 
 #define	NUMCOMMANDS	(sizeof(bindnames)/sizeof(bindnames[0]))
