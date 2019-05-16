@@ -1320,6 +1320,16 @@ void M_Options_Key (int k)
 			{
 				Cbuf_AddText ("resetcfg\n");
 				Cbuf_AddText ("exec default.cfg\n");
+				Cbuf_AddText ("bind \"RTHUMB\" \"centerview\"\n");
+				Cbuf_AddText ("bind \"BBUTTON\" \"+jump\"\n");
+				Cbuf_AddText ("bind \"XBUTTON\" \"impulse 10\"\n");
+				Cbuf_AddText ("bind \"YBUTTON\" \"impulse 12\"\n");
+				Cbuf_AddText ("bind \"LTRIGGER\" \"+jump\"\n");
+				Cbuf_AddText ("bind \"RTRIGGER\" \"+attack\"\n");
+				Cbuf_AddText ("scr_conscale 3.5\n");
+				Cbuf_AddText ("scr_menuscale 3.5\n");
+				Cbuf_AddText ("scr_sbarscale 3.5\n");
+				Cbuf_AddText ("scr_crosshairscale 3.5\n");
 			}
 			break;
 #ifdef __SWITCH__
