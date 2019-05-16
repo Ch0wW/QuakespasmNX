@@ -813,7 +813,7 @@ forward:
 		break;
 
 #ifdef __SWITCH__
-	case K_YBUTTON:
+	case K_XBUTTON:
 		if (setup_cursor == 0)
 			IN_SwitchKeyboard(setup_hostname, 16);
 		else if (setup_cursor == 1)
@@ -822,7 +822,7 @@ forward:
 #endif
 
 	case K_BACKSPACE:
-	case K_XBUTTON:
+	case K_YBUTTON:
 		if (setup_cursor == 0)
 		{
 			if (strlen(setup_hostname))
@@ -1316,7 +1316,11 @@ void M_Options_Key (int k)
 			break;
 		case OPT_DEFAULTS:
 			if (SCR_ModalMessage("This will reset all controls\n"
+		#ifdef __SWITCH__
+					"and stored cvars. Continue? (A: Yes / B: No)\n", 15.0f))
+		#else
 					"and stored cvars. Continue? (y/n)\n", 15.0f))
+		#endif
 			{
 				Cbuf_AddText ("resetcfg\n");
 				Cbuf_AddText ("exec default.cfg\n");
@@ -2087,7 +2091,7 @@ void M_LanConfig_Key (int key)
 		break;
 
 #ifdef __SWITCH__
-	case K_YBUTTON:
+	case K_XBUTTON:
 		if (lanConfig_cursor == 2)
 			IN_SwitchKeyboard(lanConfig_joinname, 22);
 		else if (lanConfig_cursor == 0)
@@ -2095,7 +2099,7 @@ void M_LanConfig_Key (int key)
 		break;
 #endif
 
-	case K_XBUTTON:
+	case K_YBUTTON:
 	case K_BACKSPACE:
 		if (lanConfig_cursor == 0)
 		{

@@ -273,13 +273,12 @@ void Key_Console (int key)
 		return;
 
 #ifdef __SWITCH__
-	case K_YBUTTON:
+	case K_XBUTTON:
 		IN_SwitchKeyboard(workline + 1, MAXCMDLINE - 1);
 		key_linepos = strlen(workline);
 		return;
-
-	case K_XBUTTON:
 #endif
+
 	case K_BACKSPACE:
 		key_tabpartial[0] = 0;
 		if (key_linepos > 1)
@@ -874,13 +873,6 @@ void Key_Init (void)
 #if defined(PLATFORM_OSX) || defined(PLATFORM_MAC)
 	consolekeys[K_COMMAND] = true;
 #endif
-#if defined(__SWITCH__)
-	consolekeys[K_YBUTTON] = true;
-	consolekeys[K_XBUTTON] = true;
-	consolekeys[K_ABUTTON] = true;
-	consolekeys[K_LSHOULDER] = true;
-	consolekeys[K_RSHOULDER] = true;
-#endif
 	consolekeys[K_MWHEELUP] = true;
 	consolekeys[K_MWHEELDOWN] = true;
 
@@ -890,6 +882,11 @@ void Key_Init (void)
 	menubound[K_ESCAPE] = true;
 	for (i = 0; i < 12; i++)
 		menubound[K_F1+i] = true;
+
+#if __SWITCH__
+	for (int i = 0 ; i < 10 ; i++)
+		consolekeys[K_LTHUMB + i] = true;
+#endif
 
 //
 // register our functions
