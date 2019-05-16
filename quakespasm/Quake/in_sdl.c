@@ -62,7 +62,7 @@ cvar_t	joy_invert = { "joy_invert", "0", CVAR_ARCHIVE };
 cvar_t	joy_exponent = { "joy_exponent", "3", CVAR_ARCHIVE };
 cvar_t	joy_exponent_move = { "joy_exponent_move", "3", CVAR_ARCHIVE };
 cvar_t	joy_swapmovelook = { "joy_swapmovelook", "0", CVAR_ARCHIVE };
-cvar_t	joy_enable = { "joy_enable", "1", CVAR_ARCHIVE };
+cvar_t	joy_enable = { "joy_enable", "1", CVAR_ARCHIVE | CVAR_ROM };
 
 #ifdef __SWITCH__
 cvar_t	gyro_enable = { "gyro_enable", "0", CVAR_ARCHIVE };
