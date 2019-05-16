@@ -669,12 +669,12 @@ void M_MultiPlayer_Key (int key)
 		{
 		case 0:
 			if (ipxAvailable || tcpipAvailable)
-				M_Menu_Net_f ();
+				M_Menu_LanConfig_f ();
 			break;
 
 		case 1:
 			if (ipxAvailable || tcpipAvailable)
-				M_Menu_Net_f ();
+				M_Menu_LanConfig_f ();
 			break;
 
 		case 2:
@@ -905,7 +905,7 @@ void M_Menu_Net_f (void)
 	key_dest = key_menu;
 	m_state = m_net;
 	m_entersound = true;
-	m_net_items = 2;
+	m_net_items = 1;
 
 	if (m_net_cursor >= m_net_items)
 		m_net_cursor = 0;
@@ -1988,18 +1988,12 @@ void M_LanConfig_Draw (void)
 		startJoin = "New Game";
 	else
 		startJoin = "Join Game";
-	if (IPXConfig)
-		protocol = "IPX";
-	else
-		protocol = "TCP/IP";
+	protocol = "TCP/IP";
 	M_Print (basex, 32, va ("%s - %s", startJoin, protocol));
 	basex += 8;
 
 	M_Print (basex, 52, "Address:");
-	if (IPXConfig)
-		M_Print (basex+9*8, 52, my_ipx_address);
-	else
-		M_Print (basex+9*8, 52, my_tcpip_address);
+	M_Print (basex+9*8, 52, my_tcpip_address);
 
 	M_Print (basex, lanConfig_cursor_table[0], "Port");
 	M_DrawTextBox (basex+8*8, lanConfig_cursor_table[0]-8, 6, 1);
@@ -2039,7 +2033,7 @@ void M_LanConfig_Key (int key)
 	{
 	case K_ESCAPE:
 	case K_BBUTTON:
-		M_Menu_Net_f ();
+		M_Menu_MultiPlayer_f ();
 		break;
 
 	case K_UPARROW:
@@ -2561,7 +2555,7 @@ void M_GameOptions_Key (int key)
 	{
 	case K_ESCAPE:
 	case K_BBUTTON:
-		M_Menu_Net_f ();
+		M_Menu_LanConfig_f ();
 		break;
 
 	case K_UPARROW:
@@ -2945,10 +2939,6 @@ void M_Draw (void)
 		M_Setup_Draw ();
 		break;
 
-	case m_net:
-		M_Net_Draw ();
-		break;
-
 	case m_options:
 		M_Options_Draw ();
 		break;
@@ -3043,10 +3033,6 @@ void M_Keydown (int key)
 		M_Setup_Key (key);
 		return;
 
-	case m_net:
-		M_Net_Key (key);
-		return;
-
 	case m_options:
 		M_Options_Key (key);
 		return;
@@ -3137,7 +3123,7 @@ void M_ConfigureNetSubsystem(void)
 // enable/disable net systems to match desired config
 	Cbuf_AddText ("stopdemo\n");
 
-	if (IPXConfig || TCPIPConfig)
+	if (TCPIPConfig)
 		net_hostport = lanConfig_port;
 }
 
