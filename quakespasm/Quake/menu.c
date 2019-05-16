@@ -1397,6 +1397,7 @@ const char *bindnames[][2] =
 
 	#ifndef __SWITCH__
 	{"+strafe",		"sidestep"},
+	#endif
 
 	{"+lookup",		"look up"},
 	{"+lookdown",		"look down"},
