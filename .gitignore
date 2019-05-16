@@ -1,0 +1,12 @@
+quakespasm/build/
+/release/
+.vscode
+*.mk
+*.user
+quakespasm/*.d
+quakespasm/*.elf
+quakespasm/*.nacp
+quakespasm/*.nro
+quakespasm/*.nso
+quakespasm/*.pfs0
+quakespasm/.vscode
